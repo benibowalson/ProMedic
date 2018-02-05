@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">ProMedic</string>
+
+    <string name="name_of_ailment">Ailment Name</string>
+    <string name="category_of_ailment">Category</string>
+    <string name="introduction_of_ailment">Introduction</string>
+    <string name="aetiology_of_ailment">Aetiology</string>
+    <string name="pathophysiology_of_ailment">Pathophysiology</string>
+    <string name="clinical_features_of_ailment">Clinical Features</string>
+    <string name="differential_diagnosis_of_ailment">Differential Diagnosis</string>
+    <string name="complications_of_ailment">Complications</string>
+    <string name="investigations_of_ailment">Investigations</string>
+    <string name="treatment_objectives_of_ailment">Treatment Objectives</string>
+    <string name="non_drug_treatment_of_ailment">Non Drug Treatment</string>
+    <string name="drug_treatment_of_ailment">Drug Treatment</string>
+    <string name="supportive_measures_of_ailment">Supportive Measures</string>
+    <string name="notable_adverse_drug_reactions_of_ailment">Notable Adverse Drug Reactions</string>
+    <string name="caution_of_ailment">Caution</string>
+    <string name="prevention_of_ailment">Prevention</string>
+
+    <string name="category_search_string">Search Category</string>
+    <string name="ailment_search_string">Search Ailment</string>
+    <string name="menu_ailments">Ailments</string>
+    <string name="menu_categories">Categories</string>
+    <string name="save_string">Save</string>
+    <string name="new_ailment_string">New Ailment</string>
+    <string name="new_category_string">New Category</string>
+
+</resources>

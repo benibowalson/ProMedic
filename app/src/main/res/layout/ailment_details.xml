@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/mainBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/lblName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/name_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/category_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblIntroduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/introduction_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbIntroduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblAetiology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/aetiology_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbAetiology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblPathophysiology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/pathophysiology_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbPathophysiology"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblClinicalFeatures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/clinical_features_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbClinicalFeatures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblDifferentialDiagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/differential_diagnosis_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbDifferentialDiagnosis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblComplications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/complications_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbComplications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblInvestigations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/investigations_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbInvestigations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblTreatmentObjectives"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/treatment_objectives_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbTreatmentObjectives"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblNonDrugTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/non_drug_treatment_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbNonDrugTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblDrugTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/drug_treatment_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbDrugTreatment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblSupportiveMeasures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/supportive_measures_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbSupportiveMeasures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblNotableAdverseDrugReactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/notable_adverse_drug_reactions_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbNotableAdverseDrugReactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblCaution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/caution_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbCaution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/lblPrevention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:background="@color/labelBackground"
+                android:gravity="center"
+                android:text="@string/prevention_of_ailment" />
+
+            <WebView
+                android:id="@+id/wbPrevention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                >
+            </WebView>
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/myFab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@android:drawable/ic_menu_edit" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

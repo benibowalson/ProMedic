@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categoriesArray">
+        <item>Alimentary Canal</item>
+        <item>Blood and Blood Forming Organs</item>
+        <item>Cardiovascular System</item>
+        <item>Central Nervous System</item>
+        <item>Dental and Oral Disorders</item>
+        <item>Dermatology</item>
+        <item>Ear, Nose and Throat</item>
+        <item>Endocrine System</item>
+        <item>Eye Disorder</item>
+        <item>Genito-Urinary System</item>
+        <item>Infectious Disease/Infestations</item>
+        <item>Musculoskeletal System</item>
+        <item>Obstetrics and Gynaecology</item>
+        <item>Respiratory System</item>
+        <item>Injuries and Acute Trauma</item>
+        <item>Surgical Care and Associated Disorders</item>
+        <item>Paediatric Perspectives</item>
+        <item>Emergencies</item>
+        <item>Therapeutics</item>
+        <item>Notifiable Diseases</item>
+    </string-array>
+</resources>

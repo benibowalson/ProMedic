@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/lblName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/name_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtAilmentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            >
+        </EditText>
+
+        <TextView
+            android:id="@+id/lblCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/category_of_ailment" />
+
+        <Spinner
+            android:id="@+id/spnCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/lblIntroduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/introduction_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtIntroduction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+
+        <TextView
+            android:id="@+id/lblAetiology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/aetiology_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtAetiology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblPathophysiology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/pathophysiology_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtPathophysiology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblClinicalFeatures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/clinical_features_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtClinicalFeatures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblDifferentialDiagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/differential_diagnosis_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtDifferentialDiagnosis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblComplications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/complications_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtComplications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblInvestigations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/investigations_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtInvestigations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblTreatmentObjectives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/treatment_objectives_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtTreatmentObjectives"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblNonDrugTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/non_drug_treatment_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtNonDrugTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblDrugTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/drug_treatment_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtDrugTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblSupportiveMeasures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/supportive_measures_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtSupportiveMeasures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblNotableAdverseDrugReactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/notable_adverse_drug_reactions_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtNotableAdverseDrugReactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblCaution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/caution_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtCaution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <TextView
+            android:id="@+id/lblPrevention"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/labelBackground"
+            android:gravity="center"
+            android:text="@string/prevention_of_ailment" />
+
+        <EditText
+            android:id="@+id/txtPrevention"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnSave"
+                android:contentDescription="@string/save_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/labelBackground"
+                android:layout_marginRight="10dp"
+                android:text="SAVE"
+                style="?android:attr/borderlessButtonStyle"
+                android:textSize="15sp"
+                />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:contentDescription="@string/save_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/labelBackground"
+                android:text="CANCEL"
+                style="?android:attr/borderlessButtonStyle"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</ScrollView>
