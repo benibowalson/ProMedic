@@ -13,6 +13,8 @@
             android:id="@+id/lblName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/name_of_ailment" />
@@ -29,6 +31,8 @@
             android:id="@+id/lblCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/category_of_ailment" />
@@ -42,6 +46,8 @@
             android:id="@+id/lblIntroduction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/introduction_of_ailment" />
@@ -58,6 +64,8 @@
             android:id="@+id/lblAetiology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/aetiology_of_ailment" />
@@ -73,6 +81,8 @@
             android:id="@+id/lblPathophysiology"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/pathophysiology_of_ailment" />
@@ -88,6 +98,8 @@
             android:id="@+id/lblClinicalFeatures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/clinical_features_of_ailment" />
@@ -103,6 +115,8 @@
             android:id="@+id/lblDifferentialDiagnosis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/differential_diagnosis_of_ailment" />
@@ -118,6 +132,8 @@
             android:id="@+id/lblComplications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/complications_of_ailment" />
@@ -133,6 +149,8 @@
             android:id="@+id/lblInvestigations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/investigations_of_ailment" />
@@ -148,6 +166,8 @@
             android:id="@+id/lblTreatmentObjectives"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/treatment_objectives_of_ailment" />
@@ -163,6 +183,8 @@
             android:id="@+id/lblNonDrugTreatment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/non_drug_treatment_of_ailment" />
@@ -178,6 +200,8 @@
             android:id="@+id/lblDrugTreatment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/drug_treatment_of_ailment" />
@@ -193,6 +217,8 @@
             android:id="@+id/lblSupportiveMeasures"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/supportive_measures_of_ailment" />
@@ -208,6 +234,8 @@
             android:id="@+id/lblNotableAdverseDrugReactions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/notable_adverse_drug_reactions_of_ailment" />
@@ -223,6 +251,8 @@
             android:id="@+id/lblCaution"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/caution_of_ailment" />
@@ -238,6 +268,8 @@
             android:id="@+id/lblPrevention"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/label_text_size"
             android:background="@color/labelBackground"
             android:gravity="center"
             android:text="@string/prevention_of_ailment" />
@@ -251,16 +283,19 @@
 
         <LinearLayout
             android:layout_gravity="center"
-            android:textAlignment="center"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="@dimen/row_padding">
 
             <Button
                 android:id="@+id/btnSave"
                 android:contentDescription="@string/save_string"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@color/labelBackground"
+                android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
                 android:text="SAVE"
                 style="?android:attr/borderlessButtonStyle"
@@ -272,6 +307,7 @@
                 android:contentDescription="@string/save_string"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@color/labelBackground"
                 android:text="CANCEL"
                 style="?android:attr/borderlessButtonStyle"
@@ -279,8 +315,6 @@
                 />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 

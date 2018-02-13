@@ -1,16 +1,25 @@
 package com.example.a48101040.promedic;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.a48101040.promedic.data.Ailment;
+import com.example.a48101040.promedic.utilities.MyConstants;
+import com.example.a48101040.promedic.utilities.MySingleton;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by 48101040 on 2/3/2018.
@@ -18,8 +27,9 @@ import com.example.a48101040.promedic.data.Ailment;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    Ailment currentAilment;
-    public static final String CURRENT_AILMENT_KEY = "current_ailment_key";
+    private Ailment currentAilment;
+    private List<String> mCategoryNamesList = new ArrayList<>();    //not used; but just so we can send to Edit Activity
+    public static final String TAG = "Benny Work";
 
     FloatingActionButton fab;
 
@@ -48,9 +58,10 @@ public class DetailsActivity extends AppCompatActivity {
         if(getSupportActionBar() != null){
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("AILMENT DETAILS");
         }
 
-        fab = (FloatingActionButton)findViewById(R.id.myFab);
+        fab = (FloatingActionButton)findViewById(R.id.fabEditAilment);
 
         nameWebView = (WebView)findViewById(R.id.wbName);
         introductionWebView = (WebView)findViewById(R.id.wbIntroduction);
@@ -69,39 +80,60 @@ public class DetailsActivity extends AppCompatActivity {
         cautionsWebView = (WebView)findViewById(R.id.wbCaution);
         preventionWebView = (WebView)findViewById(R.id.wbPrevention);
 
+        //Retrieve Data
+        currentAilment = MySingleton.getInstance().retrieveCurrentAilment();
+        mCategoryNamesList = MySingleton.getInstance().retrieveCategoriesList();
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startEditActivityIntent = new Intent(DetailsActivity.this, NewOrEditAilment.class);
-                startEditActivityIntent.putExtra("action_code", 0);
+                Intent startEditActivityIntent = new Intent(getApplicationContext(), NewOrEditAilment.class);
+
+                MySingleton.getInstance().saveActionCode(0);        //0 is Code for Edit Operation
+
+                /*
+                startEditActivityIntent.putExtra(MyConstants.ACTION_CODE_KEY, 0);
+                startEditActivityIntent.putStringArrayListExtra(MyConstants.LIST_OF_CATEGORIES_KEY,(ArrayList<String>) mCategoryNamesList);
+
+                Bundle myExtras = new Bundle();
+                myExtras.putParcelable(MyConstants.PARCELABLE_AILMENT_KEY, currentAilment);
+
+                startEditActivityIntent.putExtras(myExtras);
+                */
                 startActivity(startEditActivityIntent);
             }
         });
 
+
+        /*
         if(savedInstanceState == null){         //New (Fresh) Activity
             //Parent activity sent in a bundle with the intent
             Intent sourceIntent = getIntent();
             Bundle extras = sourceIntent.getExtras();
             if(extras != null){
-                currentAilment = (Ailment)extras.getParcelable("CLICKED_AILMENT");
+                currentAilment = (Ailment)extras.getParcelable(MyConstants.PARCELABLE_AILMENT_KEY);
+                mCategoryNamesList = extras.getStringArrayList(MyConstants.LIST_OF_CATEGORIES_KEY);
             }
-        } else {
-            currentAilment = savedInstanceState.getParcelable(CURRENT_AILMENT_KEY);
+        } else {    //Device Rotate
+            currentAilment = MySingleton.getInstance().retrieveCurrentAilment();
+            mCategoryNamesList = MySingleton.getInstance().retrieveCategoriesList();
         }
+        */
 
-        writeFields();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putParcelable(CURRENT_AILMENT_KEY, currentAilment);
+        if(currentAilment != null){
+            writeFields();
+        } else {
+            Toast.makeText(this, "Null Ailment", Toast.LENGTH_LONG).show();
+        }
     }
 
     void loadWebView(WebView webView, String strTextToLoad){
         String myText ="";
-        myText += "<html><body style=\"font-size:18\"><p align=\"justify\">";
+        myText += "<html><body style=\"font-size:18; font-family:helvetica\"><p align=\"justify\">";
         myText += strTextToLoad + "</p></body></html>";
+        webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         webView.loadData(myText, "text/html", "utf-8");
     }
 

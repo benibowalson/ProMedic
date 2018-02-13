@@ -5,24 +5,33 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.a48101040.promedic.adapters.AilmentRecyclerAdapter;
 import com.example.a48101040.promedic.data.Ailment;
 import com.example.a48101040.promedic.db.DbHelper;
-import com.example.a48101040.promedic.tasks.AilmentsLoader;
-import com.example.a48101040.promedic.tasks.CategoriesLoader;
+import com.example.a48101040.promedic.dialogs.AboutDialog;
+import com.example.a48101040.promedic.loaders.AilmentsLoader;
+import com.example.a48101040.promedic.loaders.CategoriesLoader;
+import com.example.a48101040.promedic.utilities.MyConstants;
+import com.example.a48101040.promedic.utilities.MyDividerItemDecoration;
+import com.example.a48101040.promedic.utilities.MySingleton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,18 +39,17 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
-        implements SearchView.OnQueryTextListener, AilmentRecyclerAdapter.IListenToClicks {
+        implements AilmentRecyclerAdapter.IListenToClicks {
 
     private DbHelper mDbHelper;
     private List<Ailment> mAilmentsList = new ArrayList<>();
     private List<String> mCategoriesList = new ArrayList<>();
     private RecyclerView myRecyclerView;
+    private android.support.v7.widget.SearchView mSearchView;
     private AilmentRecyclerAdapter myRecyclerAdapter;
-    private GridLayoutManager mGridLayoutManager;
+    private LinearLayoutManager mLinearLayoutManager;
     static final int AILMENTS_LOADER_ID = 1;
     static final int CATEGORIES_LOADER_ID = 2;
-    public static final String RECYCLERVIEW_POSITION_STATE_KEY = "recycler_position_state";
-    Parcelable recyclerViewState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,18 +60,23 @@ public class MainActivity extends AppCompatActivity
         Toolbar myAppToolbar = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(myAppToolbar);
 
+        getSupportActionBar().setTitle(R.string.toolbar_title);
+
         //Setup RecyclerView
         myRecyclerView = (RecyclerView) findViewById(R.id.rv_Recycler);
-        myRecyclerView.setHasFixedSize(true);
-        myRecyclerAdapter = new AilmentRecyclerAdapter(MainActivity.this, mAilmentsList, MainActivity.this);
-        myRecyclerView.setAdapter(myRecyclerAdapter);
+        whiteNotificationBar(myRecyclerView);
+        myRecyclerAdapter = new AilmentRecyclerAdapter(this, mAilmentsList, this);
 
-        mGridLayoutManager = new GridLayoutManager(this, 1);
-        myRecyclerView.setLayoutManager(mGridLayoutManager);
+        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        myRecyclerView.setLayoutManager(mLinearLayoutManager);
+
+        myRecyclerView.setHasFixedSize(true);
+        myRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        myRecyclerView.addItemDecoration(new MyDividerItemDecoration(this, MyDividerItemDecoration.VERTICAL_LIST, 36));
+        myRecyclerView.setAdapter(myRecyclerAdapter);
 
 
         FloatingActionButton myFab = (FloatingActionButton) findViewById(R.id.fab);
-
         myFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,85 +86,70 @@ public class MainActivity extends AppCompatActivity
 
         mDbHelper = new DbHelper(this);
 
+        if(savedInstanceState == null){
+            loadMyData();
+        } else {
+            getSupportLoaderManager().initLoader(AILMENTS_LOADER_ID, null, myAilmentsLoaderCallbacks);
+        }
+    }
+
+    void loadMyData(){
         getSupportLoaderManager().initLoader(CATEGORIES_LOADER_ID, null, myCategoriesLoaderCallbacks);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /*getMenuInflater().inflate(R.menu.options_menu, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         SearchManager searchManager = (SearchManager)getSystemService(Context.SEARCH_SERVICE);
-        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)menu.findItem(R.id.search).getActionView();
-        //SearchView searchView = (SearchView)menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        mSearchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.mnuSearch).getActionView();
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        mSearchView.setMaxWidth(Integer.MAX_VALUE);
+        mSearchView.setOnQueryTextListener(new android.support.v7.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                myRecyclerAdapter.getFilter().filter(query);
+                return false;
+            }
 
-        searchView.setSubmitButtonEnabled(true);
-        searchView.setOnQueryTextListener((android.support.v7.widget.SearchView.OnQueryTextListener) searchView);
-        */
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myRecyclerAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         return true;
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.mnuSearch:
+                return true;
             case R.id.mnuNewAilment:
                 startNewOrEditAilmentActivity();
                 return true;
             case R.id.mnuCategories:
                 return true;
-            case R.id.mnuNewCategory:
+            case R.id.mnuAbout:
+                showDialog();
                 return true;
-            /*case R.id.search:
-                onSearchRequested();
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String strSearch = intent.getStringExtra(SearchManager.QUERY);
+    public void onBackPressed() {
+        // close search view on back button pressed
+        if (!mSearchView.isIconified()) {
+            mSearchView.setIconified(true);
+            return;
         }
+        super.onBackPressed();
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
 
-        recyclerViewState = mGridLayoutManager.onSaveInstanceState();           //Save RecyclerView Position
-        outState.putParcelable(RECYCLERVIEW_POSITION_STATE_KEY, recyclerViewState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        if(savedInstanceState != null){
-            recyclerViewState = savedInstanceState.getParcelable(RECYCLERVIEW_POSITION_STATE_KEY);
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(recyclerViewState != null)
-            mGridLayoutManager.onRestoreInstanceState(recyclerViewState);
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        myRecyclerAdapter.getFilter().filter(s);
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        myRecyclerAdapter.getFilter().filter(s);
-        return false;
-    }
 
     private android.support.v4.app.LoaderManager.LoaderCallbacks<List<Ailment>> myAilmentsLoaderCallbacks = new android.support.v4.app.LoaderManager.LoaderCallbacks<List<Ailment>>() {
         @Override
@@ -163,7 +161,8 @@ public class MainActivity extends AppCompatActivity
         public void onLoadFinished(android.support.v4.content.Loader<List<Ailment>> loader, List<Ailment> data) {
             mAilmentsList = data;
             myRecyclerAdapter.swapData(data);
-
+            MySingleton.getInstance().saveAilmentsList(data);
+            myRecyclerAdapter.notifyDataSetChanged();
         }
 
         @Override
@@ -181,6 +180,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onLoadFinished(android.support.v4.content.Loader<List<String>> loader, List<String> data) {
             mCategoriesList = data;
+            MySingleton.getInstance().saveCategoriesList(mCategoriesList);    //Hold data in Singleton class
+
             if(mCategoriesList.size() > 0){
                 getSupportLoaderManager().initLoader(AILMENTS_LOADER_ID, null, myAilmentsLoaderCallbacks);
             } else {
@@ -205,18 +206,29 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onAilmentNameClicked(int clickedPos) {
         Ailment anAilment = mAilmentsList.get(clickedPos);
+        MySingleton.getInstance().saveCurrentAilment(anAilment);    //Save current Ailment for use in Details Activity
         //Details Activity
-        Bundle extrasBundle = new Bundle();
-        extrasBundle.putParcelable("CLICKED_AILMENT", anAilment);
         Intent detailsActivityStartIntent = new Intent(this, DetailsActivity.class);
-        detailsActivityStartIntent.putExtras(extrasBundle);
         startActivity(detailsActivityStartIntent);
     }
 
     void startNewOrEditAilmentActivity(){       //actionCode 1/0 for New/Edit Ailment
         Intent intent = new Intent(this, NewOrEditAilment.class);
-        intent.putExtra("action_code", 1);
-        intent.putStringArrayListExtra("category_names_list", (ArrayList<String>)mCategoriesList);  //Cast list to ArrayList
+        MySingleton.getInstance().saveActionCode(1);        //1 is ActionCode for New Ailment (as opposed to an Edit Operation)
         startActivity(intent);
+    }
+
+    void showDialog(){
+        AboutDialog myAboutDialog = new AboutDialog();
+        myAboutDialog.show(getFragmentManager(), "About ProMedic");
+    }
+
+    private void whiteNotificationBar(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flags = view.getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            view.setSystemUiVisibility(flags);
+            getWindow().setStatusBarColor(Color.WHITE);
+        }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/mainBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -19,7 +19,9 @@
                 android:id="@+id/lblName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textColor="@color/contact_name"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/name_of_ailment" />
@@ -37,7 +39,9 @@
                 android:id="@+id/lblCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textColor="@color/contact_name"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/category_of_ailment" />
@@ -54,7 +58,9 @@
                 android:id="@+id/lblIntroduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textColor="@color/contact_name"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/introduction_of_ailment" />
@@ -71,7 +77,8 @@
                 android:id="@+id/lblAetiology"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/aetiology_of_ailment" />
@@ -88,7 +95,8 @@
                 android:id="@+id/lblPathophysiology"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/pathophysiology_of_ailment" />
@@ -105,7 +113,8 @@
                 android:id="@+id/lblClinicalFeatures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/clinical_features_of_ailment" />
@@ -122,7 +131,8 @@
                 android:id="@+id/lblDifferentialDiagnosis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/differential_diagnosis_of_ailment" />
@@ -139,7 +149,8 @@
                 android:id="@+id/lblComplications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/complications_of_ailment" />
@@ -156,7 +167,8 @@
                 android:id="@+id/lblInvestigations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/investigations_of_ailment" />
@@ -173,7 +185,8 @@
                 android:id="@+id/lblTreatmentObjectives"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/treatment_objectives_of_ailment" />
@@ -190,7 +203,8 @@
                 android:id="@+id/lblNonDrugTreatment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/non_drug_treatment_of_ailment" />
@@ -207,7 +221,8 @@
                 android:id="@+id/lblDrugTreatment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/drug_treatment_of_ailment" />
@@ -224,7 +239,8 @@
                 android:id="@+id/lblSupportiveMeasures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/supportive_measures_of_ailment" />
@@ -241,7 +257,8 @@
                 android:id="@+id/lblNotableAdverseDrugReactions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/notable_adverse_drug_reactions_of_ailment" />
@@ -258,7 +275,8 @@
                 android:id="@+id/lblCaution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/caution_of_ailment" />
@@ -275,7 +293,8 @@
                 android:id="@+id/lblPrevention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="@dimen/label_text_size"
                 android:background="@color/labelBackground"
                 android:gravity="center"
                 android:text="@string/prevention_of_ailment" />
@@ -287,22 +306,15 @@
                 android:textAlignment="center"
                 >
             </WebView>
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/myFab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:src="@android:drawable/ic_menu_edit" />
-
-
         </LinearLayout>
-
-
     </ScrollView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabEditAilment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_edit" />
 
-
-
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

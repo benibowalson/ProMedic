@@ -12,6 +12,7 @@ import com.example.a48101040.promedic.db.DbHelper;
 
 public class Ailment implements Parcelable {
 
+    public int ID;
     public String Name;
     public String Category;
     public String Introduction;
@@ -29,9 +30,10 @@ public class Ailment implements Parcelable {
     public String Caution;
     public String Prevention;
 
-    public Ailment(String Name, String Category, String Introduction, String Aetiology, String PathoPhysiology, String ClinicalFeatures, String DifferentialDiagnosis, String Complications,
+    public Ailment(int id, String Name, String Category, String Introduction, String Aetiology, String PathoPhysiology, String ClinicalFeatures, String DifferentialDiagnosis, String Complications,
                    String Investigations, String TreatmentObjectives, String NonDrugTreatment, String DrugTreatment, String SupportiveMeasures,
                    String NotableAdverseDrugReactions, String Caution, String Prevention){
+        this.ID = id;
         this.Name = Name;
         this.Category = Category;
         this.Introduction = Introduction;
@@ -51,6 +53,7 @@ public class Ailment implements Parcelable {
     }
 
     public Ailment(Cursor cursor){
+        this.ID = cursor.getInt(cursor.getColumnIndex(DbHelper.ID_FOR_AILMENT_TABLE));
         this.Name = cursor.getString(cursor.getColumnIndex(DbHelper.NAME_COL_NAME));
         this.Category = cursor.getString(cursor.getColumnIndex(DbHelper.CATEGORY_COL_NAME));
         this.Introduction = cursor.getString(cursor.getColumnIndex(DbHelper.INTRODUCTION_COL_NAME));
@@ -71,6 +74,7 @@ public class Ailment implements Parcelable {
 
 
     private Ailment(Parcel in){
+        ID = in.readInt();
         Name = in.readString();
         Category = in.readString();
         Introduction = in.readString();
@@ -102,6 +106,7 @@ public class Ailment implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
+        parcel.writeInt(ID);
         parcel.writeString(Name);
         parcel.writeString(Category);
         parcel.writeString(Introduction);

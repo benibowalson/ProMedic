@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--
-    <item android:id="@+id/search"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:id="@+id/mnuSearch"
         android:title="@string/ailment_search_string"
         android:icon="@drawable/ic_search"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
-        -->
+
 
     <item
         android:title="@string/new_ailment_string"
@@ -17,7 +19,7 @@
         android:title="@string/menu_categories"
         android:id="@+id/mnuCategories"/>
     <item
-        android:title="@string/new_category_string"
-        android:id="@+id/mnuNewCategory"/>
+        android:title="@string/about"
+        android:id="@+id/mnuAbout"/>
 
 </menu>

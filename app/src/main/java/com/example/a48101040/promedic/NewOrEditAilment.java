@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.a48101040.promedic.data.Ailment;
 import com.example.a48101040.promedic.db.DbHelper;
+import com.example.a48101040.promedic.utilities.MyConstants;
+import com.example.a48101040.promedic.utilities.MySingleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +37,8 @@ public class NewOrEditAilment extends AppCompatActivity {
     int mEditID;
     int actionCode;
     Ailment currentAilment;
-    ArrayList<String> mCategoryNamesList = new ArrayList<>();
+    List<String> mCategoryNamesList = new ArrayList<>();
     ArrayAdapter<String> mSpinnerAdapter;
-    public static final String CURRENT_AILMENT_KEY = "current_ailment_key";
-    public static final String CATEGORY_NAMES_LIST_KEY = "category_names_list";
-    public static final String ACTION_CODE_KEY = "action_code";
 
     EditText nameET;
     EditText introductionET;
@@ -85,6 +84,17 @@ public class NewOrEditAilment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_ailment);
 
+        //Retrieve Data
+        actionCode = MySingleton.getInstance().retrieveActionCode();
+        mCategoryNamesList =  MySingleton.getInstance().retrieveCategoriesList();
+        currentAilment = MySingleton.getInstance().retrieveCurrentAilment();
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle(((actionCode == 1)? "NEW ":"EDIT ") + "AILMENT");
+        }
+
         nameET = (EditText)findViewById(R.id.txtAilmentName);
         introductionET = (EditText)findViewById(R.id.txtIntroduction);
         aetiologyET = (EditText)findViewById(R.id.txtAetiology);
@@ -105,21 +115,20 @@ public class NewOrEditAilment extends AppCompatActivity {
         saveButton = (Button) findViewById(R.id.btnSave);
         cancelButton = (Button) findViewById(R.id.btnCancel);
 
-        if(savedInstanceState == null){     //New Fresh Activity
-            Intent sourceIntent = getIntent();
-            actionCode = sourceIntent.getIntExtra(ACTION_CODE_KEY, 100);
-            mCategoryNamesList = sourceIntent.getStringArrayListExtra(CATEGORY_NAMES_LIST_KEY);
-        } else {
-            currentAilment = savedInstanceState.getParcelable(CURRENT_AILMENT_KEY);
-            mCategoryNamesList = savedInstanceState.getStringArrayList(CATEGORY_NAMES_LIST_KEY);
-            actionCode = savedInstanceState.getInt(ACTION_CODE_KEY);
-        }
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 saveButton.setEnabled(false);
                 cancelButton.setEnabled(false);
+                strName = nameET.getText().toString().trim();
+                if(ailmentNameExists(strName)){
+                    saveButton.setEnabled(true);
+                    cancelButton.setEnabled(true);
+                    Toast.makeText(NewOrEditAilment.this, strName + " already exists!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 saveAilment(actionCode);
             }
         });
@@ -130,17 +139,8 @@ public class NewOrEditAilment extends AppCompatActivity {
                 startMainActivity();
             }
         });
-
         populateSpinner();
         if(actionCode == 0) writeFields();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        super.onSaveInstanceState(outState, outPersistentState);
-        outState.putParcelable(CURRENT_AILMENT_KEY, currentAilment);
-        outState.putStringArrayList(CATEGORY_NAMES_LIST_KEY, mCategoryNamesList);
-        outState.putInt(ACTION_CODE_KEY, actionCode);
     }
 
     private void saveAilment(int actionCode){
@@ -188,8 +188,10 @@ public class NewOrEditAilment extends AppCompatActivity {
         SQLiteDatabase db = mHelper.getWritableDatabase();
         if(actionCode == 1){    //New
             dbOpResult = db.insert(DbHelper.AILMENTS_TABLE_NAME, null, contentValues);
+            //insert returns NEWLY INSERTED id
         } else {    //edit
-            dbOpResult = db.update(DbHelper.AILMENTS_TABLE_NAME, contentValues, DbHelper.ID_FOR_AILMENT_TABLE + " =? ", new String[]{Integer.toString(mEditID)});
+            dbOpResult = db.update(DbHelper.AILMENTS_TABLE_NAME, contentValues, DbHelper.ID_FOR_AILMENT_TABLE + " =? ", new String[]{Integer.toString(currentAilment.ID)});
+            //update returns NUMBER OF ROWS AFFECTED
         }
 
         if (dbOpResult > -1){       //Successful Operation
@@ -220,7 +222,6 @@ public class NewOrEditAilment extends AppCompatActivity {
         preventionET.setText(currentAilment.Prevention);
     }
 
-
     void populateSpinner(){
         mSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mCategoryNamesList);
         mSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -230,5 +231,21 @@ public class NewOrEditAilment extends AppCompatActivity {
     void startMainActivity(){
         Intent mainActivityIntent = new Intent(this, MainActivity.class);
         startActivity(mainActivityIntent);
+    }
+
+    boolean ailmentNameExists(String anAilmentName){
+        boolean itExists = false;
+        List<Ailment> tempListOfAilments = new ArrayList<>();
+        tempListOfAilments = MySingleton.getInstance().retrieveAilmentsList();
+        for(Ailment anAilment:tempListOfAilments){
+            if(anAilment.Name.toLowerCase().equals(anAilmentName.toLowerCase())){
+                if(actionCode == 1 || (actionCode == 0 && anAilment.ID != currentAilment.ID)){
+                    itExists = true;
+                    break;
+                }
+            }
+        }
+
+        return itExists;
     }
 }

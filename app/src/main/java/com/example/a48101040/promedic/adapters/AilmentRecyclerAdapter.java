@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.a48101040.promedic.R;
 import com.example.a48101040.promedic.data.Ailment;
 
@@ -28,9 +31,10 @@ public class AilmentRecyclerAdapter extends RecyclerView.Adapter<AilmentRecycler
     private IListenToClicks mIClickHandler;
 
     public AilmentRecyclerAdapter(Context context, List<Ailment> ailmentList, IListenToClicks clickHandler){
-        this.mAilmentsList = ailmentList;
         this.mContext = context;
         this.mIClickHandler = clickHandler;
+        this.mAilmentsList = ailmentList;
+        this.mFilteredAilmentsList = ailmentList;
     }
 
     @Override
@@ -41,13 +45,18 @@ public class AilmentRecyclerAdapter extends RecyclerView.Adapter<AilmentRecycler
 
     @Override
     public void onBindViewHolder(AilmentRecyclerAdapter.CardForAilment holder, int position) {
-        Ailment anAilment = mAilmentsList.get(position);
+        final Ailment anAilment = mFilteredAilmentsList.get(position);
         holder.mAilmentNameTextView.setText(anAilment.Name);
+        holder.mAilmentSmallNameTextView.setText(anAilment.Name);
+        Glide.with(mContext)
+                .load(R.drawable.ic_xray)
+                .apply(RequestOptions.circleCropTransform())
+                .into(holder.mThumbnail);
     }
 
     @Override
     public int getItemCount() {
-        return mAilmentsList.size();
+        return mFilteredAilmentsList.size();
     }
 
     @Override
@@ -61,7 +70,7 @@ public class AilmentRecyclerAdapter extends RecyclerView.Adapter<AilmentRecycler
                 } else {
                     List<Ailment> tempFilteredAilmentsList = new ArrayList<>();
                     for(Ailment anAilment: mAilmentsList){
-                        if(anAilment.Name.toLowerCase().contains(userTypedString)){
+                        if(anAilment.Name.toLowerCase().contains(userTypedString.toLowerCase())){
                             tempFilteredAilmentsList.add(anAilment);
                         }
                     }
@@ -89,16 +98,22 @@ public class AilmentRecyclerAdapter extends RecyclerView.Adapter<AilmentRecycler
     public void swapData(List<Ailment> newAilmentsList){
         this.mAilmentsList.clear();
         this.mAilmentsList = newAilmentsList;
+        this.mFilteredAilmentsList.clear();
+        this.mFilteredAilmentsList = newAilmentsList;
         notifyDataSetChanged();
     }
 
     public class CardForAilment extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mAilmentNameTextView;
+        public TextView mAilmentSmallNameTextView;
+        public ImageView mThumbnail;
 
         public CardForAilment(View itemView) {
             super(itemView);
             mAilmentNameTextView = (TextView)itemView.findViewById(R.id.txtAilmentName);
+            mAilmentSmallNameTextView = (TextView) itemView.findViewById(R.id.txtAilmentSmallName);
+            mThumbnail = (ImageView)itemView.findViewById(R.id.thumbnail);
             itemView.setOnClickListener(this);
         }
 
